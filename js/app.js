@@ -494,4 +494,3 @@ function getMensagemDoDia(signo) {
 
     return lista[indice];
 }
-```
