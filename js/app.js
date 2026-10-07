@@ -1,30 +1,25 @@
-alert("JavaScript funcionando!");
-
 const discoverBtn = document.getElementById("discoverBtn");
 const birthdateInput = document.getElementById("birthdate");
 const result = document.getElementById("result");
 
 discoverBtn.addEventListener("click", function () {
 
-    const birthdate = birthdateInput.value;
+    const value = birthdateInput.value;
 
-    if (!birthdate) {
+    if (!value) {
         result.innerHTML = `
             <p class="error">🌙 Escolha sua data de nascimento.</p>
         `;
         return;
     }
 
-    // Divide a data para evitar problemas de fuso horário
-    const partes = birthdate.split("-");
+    // Pega dia e mês da data sem problemas de fuso horário
+    const partes = value.split("-");
+    const month = Number(partes[1]);
+    const day = Number(partes[2]);
 
-    const ano = Number(partes[0]);
-    const mes = Number(partes[1]);
-    const dia = Number(partes[2]);
-
-    const sign = getZodiacSign(dia, mes);
-
-    const mensagem = getMensagemDoDia(sign.name);
+    const sign = getZodiacSign(day, month);
+    const message = getDailyMessage(sign.name);
 
     result.innerHTML = `
         <div class="sign-result">
@@ -56,53 +51,28 @@ discoverBtn.addEventListener("click", function () {
             </div>
 
             <div class="description">
-
                 <h3>✨ Personalidade</h3>
-
-                <p>
-                    ${sign.description}
-                </p>
-
+                <p>${sign.description}</p>
             </div>
 
             <div class="description">
-
                 <h3>❤️ No amor</h3>
-
-                <p>
-                    ${sign.love}
-                </p>
-
+                <p>${sign.love}</p>
             </div>
 
             <div class="description">
-
                 <h3>💼 No trabalho</h3>
-
-                <p>
-                    ${sign.work}
-                </p>
-
+                <p>${sign.work}</p>
             </div>
 
             <div class="description">
-
                 <h3>💰 Dinheiro</h3>
-
-                <p>
-                    ${sign.money}
-                </p>
-
+                <p>${sign.money}</p>
             </div>
 
             <div class="description daily-message">
-
                 <h3>🔮 Mensagem do dia</h3>
-
-                <p>
-                    ${mensagem}
-                </p>
-
+                <p>${message}</p>
             </div>
 
         </div>
@@ -122,11 +92,12 @@ function getZodiacSign(day, month) {
             element: "Fogo",
             planet: "Marte",
             description: "Determinado, energético e cheio de iniciativa. Gosta de desafios e costuma agir com coragem.",
-            love: "Intenso e direto. Quando se interessa por alguém, costuma demonstrar seus sentimentos com bastante energia.",
+            love: "Intenso e direto. Demonstra seus sentimentos com energia.",
             work: "Gosta de desafios, liderança e situações que permitam tomar iniciativa.",
-            money: "Tem iniciativa para buscar novas oportunidades, mas deve evitar decisões impulsivas com dinheiro."
+            money: "Tem iniciativa para buscar oportunidades, mas deve evitar decisões impulsivas."
         };
     }
+
 
     if ((month === 4 && day >= 20) ||
         (month === 5 && day <= 20)) {
@@ -139,10 +110,11 @@ function getZodiacSign(day, month) {
             planet: "Vênus",
             description: "Paciente, leal e determinado. Valoriza estabilidade e conforto.",
             love: "Valoriza segurança, confiança e relações construídas com calma.",
-            work: "Persistente e dedicado. Prefere construir resultados sólidos ao longo do tempo.",
+            work: "Persistente e dedicado. Prefere construir resultados sólidos.",
             money: "Valoriza segurança financeira e costuma pensar antes de gastar."
         };
     }
+
 
     if ((month === 5 && day >= 21) ||
         (month === 6 && day <= 20)) {
@@ -160,6 +132,7 @@ function getZodiacSign(day, month) {
         };
     }
 
+
     if ((month === 6 && day >= 21) ||
         (month === 7 && day <= 22)) {
 
@@ -175,6 +148,7 @@ function getZodiacSign(day, month) {
             money: "Prefere segurança e estabilidade. Organização financeira será importante."
         };
     }
+
 
     if ((month === 7 && day >= 23) ||
         (month === 8 && day <= 22)) {
@@ -192,6 +166,7 @@ function getZodiacSign(day, month) {
         };
     }
 
+
     if ((month === 8 && day >= 23) ||
         (month === 9 && day <= 22)) {
 
@@ -204,9 +179,10 @@ function getZodiacSign(day, month) {
             description: "Observador, organizado e cuidadoso com os detalhes.",
             love: "Demonstra carinho principalmente através de atitudes e cuidado.",
             work: "Analítico, organizado e excelente para resolver problemas.",
-            money: "Organização é seu ponto forte. Planejar os gastos pode trazer tranquilidade."
+            money: "Organização é seu ponto forte. Planejar os gastos traz tranquilidade."
         };
     }
+
 
     if ((month === 9 && day >= 23) ||
         (month === 10 && day <= 22)) {
@@ -224,6 +200,7 @@ function getZodiacSign(day, month) {
         };
     }
 
+
     if ((month === 10 && day >= 23) ||
         (month === 11 && day <= 21)) {
 
@@ -235,10 +212,11 @@ function getZodiacSign(day, month) {
             planet: "Plutão",
             description: "Intenso, misterioso e extremamente determinado.",
             love: "Valoriza confiança, intensidade e conexões profundas.",
-            work: "Persistente e estratégico. Não costuma desistir facilmente dos seus objetivos.",
+            work: "Persistente e estratégico. Não costuma desistir facilmente.",
             money: "É estratégico quando possui um objetivo e costuma pensar antes de agir."
         };
     }
+
 
     if ((month === 11 && day >= 22) ||
         (month === 12 && day <= 21)) {
@@ -256,6 +234,7 @@ function getZodiacSign(day, month) {
         };
     }
 
+
     if ((month === 12 && day >= 22) ||
         (month === 1 && day <= 19)) {
 
@@ -271,6 +250,7 @@ function getZodiacSign(day, month) {
             money: "Tem facilidade para planejamento e busca por estabilidade."
         };
     }
+
 
     if ((month === 1 && day >= 20) ||
         (month === 2 && day <= 18)) {
@@ -288,6 +268,7 @@ function getZodiacSign(day, month) {
         };
     }
 
+
     return {
         name: "Peixes",
         symbol: "♓",
@@ -302,98 +283,35 @@ function getZodiacSign(day, month) {
 }
 
 
-// ========================================
-// MENSAGEM DO DIA
-// ========================================
+function getDailyMessage(signo) {
 
-function getMensagemDoDia(signo) {
+    const messages = {
 
-    const mensagens = {
+        "Áries": "Hoje é um bom dia para tomar iniciativa. Confie na sua capacidade e dê o primeiro passo.",
 
-        "Áries": [
-            "Hoje é um bom dia para tomar iniciativa. Confie na sua capacidade e dê o primeiro passo.",
-            "Uma oportunidade pode surgir quando você menos espera. Observe os sinais e aja com confiança.",
-            "Evite agir por impulso hoje. Pense antes de tomar uma decisão importante."
-        ],
+        "Touro": "Tenha paciência. Algumas coisas precisam de tempo para dar os resultados que você espera.",
 
-        "Touro": [
-            "Tenha paciência. Algumas coisas precisam de tempo para dar os resultados que você espera.",
-            "Hoje é um bom momento para cuidar da sua estabilidade e valorizar aquilo que você já conquistou.",
-            "Uma pequena decisão tomada hoje pode trazer mais segurança para o seu futuro."
-        ],
+        "Gêmeos": "Uma conversa pode trazer uma oportunidade inesperada. Esteja aberto para ouvir.",
 
-        "Gêmeos": [
-            "Uma conversa pode trazer uma oportunidade inesperada. Esteja aberto para ouvir.",
-            "Sua criatividade está em alta. Aproveite o dia para aprender algo novo.",
-            "Nem toda resposta precisa ser encontrada imediatamente. Às vezes, observar é importante."
-        ],
+        "Câncer": "Hoje é um bom dia para ouvir sua intuição, mas sem esquecer de cuidar de você.",
 
-        "Câncer": [
-            "Hoje é um bom dia para ouvir sua intuição, mas sem esquecer de cuidar de você.",
-            "Uma pessoa próxima pode precisar da sua atenção. Um simples gesto pode fazer diferença.",
-            "Não carregue sozinho aquilo que pode ser compartilhado."
-        ],
+        "Leão": "Não tenha medo de mostrar seu potencial. Deixe sua criatividade aparecer.",
 
-        "Leão": [
-            "Não tenha medo de mostrar seu potencial. Hoje pode ser um ótimo dia para deixar sua criatividade aparecer.",
-            "Uma atitude confiante pode abrir uma porta importante. Acredite mais no seu próprio valor.",
-            "Você não precisa provar nada para ninguém. Deixe seus resultados falarem por você."
-        ],
+        "Virgem": "Organize suas prioridades e não tente resolver tudo ao mesmo tempo.",
 
-        "Virgem": [
-            "Organize suas prioridades e não tente resolver tudo ao mesmo tempo.",
-            "Um detalhe que você percebe hoje pode fazer toda a diferença.",
-            "Permita-se descansar. Nem tudo precisa estar perfeito."
-        ],
+        "Libra": "Uma escolha pode exigir equilíbrio entre razão e emoção. Não tenha pressa para decidir.",
 
-        "Libra": [
-            "Uma escolha pode exigir equilíbrio entre razão e emoção. Não tenha pressa para decidir.",
-            "Hoje é um bom dia para resolver pequenos conflitos através de uma conversa tranquila.",
-            "Valorize as relações que trazem paz."
-        ],
+        "Escorpião": "Confie na sua percepção, mas não deixe que a desconfiança controle suas decisões.",
 
-        "Escorpião": [
-            "Confie na sua percepção, mas não deixe que a desconfiança controle suas decisões.",
-            "Algo que parecia distante pode começar a se aproximar.",
-            "Hoje pode ser um dia de transformação. Deixe para trás aquilo que já não combina com você."
-        ],
+        "Sagitário": "Uma nova possibilidade pode despertar sua curiosidade. Explore, mas planeje seus próximos passos.",
 
-        "Sagitário": [
-            "Uma nova possibilidade pode despertar sua curiosidade. Explore, mas planeje seus próximos passos.",
-            "Hoje é um bom dia para sair da rotina e buscar novas experiências.",
-            "Mantenha o otimismo, mas lembre-se: grandes sonhos também precisam de pequenas ações."
-        ],
+        "Capricórnio": "Continue construindo seu caminho. Seu esforço não está sendo perdido.",
 
-        "Capricórnio": [
-            "Continue construindo seu caminho. Seu esforço não está sendo perdido.",
-            "Uma decisão prática pode aproximá-lo de um objetivo importante.",
-            "Hoje é um bom dia para organizar planos, finanças e prioridades."
-        ],
+        "Aquário": "Uma ideia diferente pode se transformar em uma oportunidade. Não tenha medo de pensar fora do comum.",
 
-        "Aquário": [
-            "Uma ideia diferente pode se transformar em uma oportunidade.",
-            "Hoje você pode enxergar uma situação de uma maneira completamente diferente.",
-            "Nem todo mundo precisa entender seus planos. Algumas ideias precisam de tempo."
-        ],
+        "Peixes": "Sua sensibilidade pode ajudá-lo a perceber algo que outras pessoas não estão enxergando."
 
-        "Peixes": [
-            "Sua sensibilidade pode ajudá-lo a perceber algo que outras pessoas não estão enxergando.",
-            "Hoje é um bom dia para ouvir sua intuição, mas mantenha os pés no chão.",
-            "Reserve alguns minutos para você. Às vezes, o silêncio ajuda a encontrar respostas."
-        ]
     };
 
-    const lista = mensagens[signo];
-
-    // A mensagem muda de acordo com o dia
-    const hoje = new Date();
-
-    const numero =
-        hoje.getDate() +
-        hoje.getMonth() +
-        hoje.getFullYear();
-
-    const indice = numero % lista.length;
-
-    return lista[indice];
+    return messages[signo];
 }
