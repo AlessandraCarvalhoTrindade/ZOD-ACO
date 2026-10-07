@@ -1,4 +1,3 @@
-```javascript
 const discoverBtn = document.getElementById("discoverBtn");
 const birthdateInput = document.getElementById("birthdate");
 const result = document.getElementById("result");
