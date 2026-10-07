@@ -120,3 +120,88 @@ button:hover {
         letter-spacing: 5px;
     }
 }
+.sign-result {
+    margin-top: 30px;
+    animation: reveal 0.7s ease;
+}
+
+.sign-symbol {
+    font-size: 75px;
+    color: #d8b4fe;
+    text-shadow: 0 0 25px rgba(216, 180, 254, 0.6);
+}
+
+.sign-result h2 {
+    font-size: 32px;
+    margin-top: 5px;
+}
+
+.period {
+    color: #cfc0df;
+    margin: 5px 0 25px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.info-box {
+    padding: 15px 10px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.info-box span {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.info-box small {
+    display: block;
+    color: #bdaed0;
+    margin-bottom: 5px;
+}
+
+.info-box strong {
+    font-size: 15px;
+}
+
+.description {
+    text-align: left;
+    padding: 18px;
+    margin-top: 12px;
+
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.description h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.description p {
+    color: #d7cde1;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.error {
+    color: #fca5a5;
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
