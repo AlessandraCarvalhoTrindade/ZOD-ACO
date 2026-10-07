@@ -1,1 +1,399 @@
-const discoverBtn = document.getElementById("discoverBtn"); const birthdateInput = document.getElementById("birthdate"); const result = document.getElementById("result"); discoverBtn.addEventListener("click", function () { const birthdate = birthdateInput.value; if (!birthdate) { result.innerHTML = ` <p class="error">🌙 Escolha sua data de nascimento.</p> `; return; } // Divide a data para evitar problemas de fuso horário const partes = birthdate.split("-"); const ano = Number(partes[0]); const mes = Number(partes[1]); const dia = Number(partes[2]); const sign = getZodiacSign(dia, mes); const mensagem = getMensagemDoDia(sign.name); result.innerHTML = ` <div class="sign-result"> <div class="sign-symbol"> ${sign.symbol} </div> <h2>${sign.name}</h2> <p class="period"> ${sign.period} </p> <div class="info-grid"> <div class="info-box"> <span>🔥</span> <small>Elemento</small> <strong>${sign.element}</strong> </div> <div class="info-box"> <span>🪐</span> <small>Planeta</small> <strong>${sign.planet}</strong> </div> </div> <div class="description"> <h3>✨ Personalidade</h3> <p> ${sign.description} </p> </div> <div class="description"> <h3>❤️ No amor</h3> <p> ${sign.love} </p> </div> <div class="description"> <h3>💼 No trabalho</h3> <p> ${sign.work} </p> </div> <div class="description"> <h3>💰 Dinheiro</h3> <p> ${sign.money} </p> </div> <div class="description daily-message"> <h3>🔮 Mensagem do dia</h3> <p> ${mensagem} </p> </div> </div> `; }); function getZodiacSign(day, month) { if ((month === 3 && day >= 21) || (month === 4 && day <= 19)) { return { name: "Áries", symbol: "♈", period: "21 de março — 19 de abril", element: "Fogo", planet: "Marte", description: "Determinado, energético e cheio de iniciativa. Gosta de desafios e costuma agir com coragem.", love: "Intenso e direto. Quando se interessa por alguém, costuma demonstrar seus sentimentos com bastante energia.", work: "Gosta de desafios, liderança e situações que permitam tomar iniciativa.", money: "Tem iniciativa para buscar novas oportunidades, mas deve evitar decisões impulsivas com dinheiro." }; } if ((month === 4 && day >= 20) || (month === 5 && day <= 20)) { return { name: "Touro", symbol: "♉", period: "20 de abril — 20 de maio", element: "Terra", planet: "Vênus", description: "Paciente, leal e determinado. Valoriza estabilidade e conforto.", love: "Valoriza segurança, confiança e relações construídas com calma.", work: "Persistente e dedicado. Prefere construir resultados sólidos ao longo do tempo.", money: "Valoriza segurança financeira e costuma pensar antes de gastar." }; } if ((month === 5 && day >= 21) || (month === 6 && day <= 20)) { return { name: "Gêmeos", symbol: "♊", period: "21 de maio — 20 de junho", element: "Ar", planet: "Mercúrio", description: "Curioso, comunicativo e inteligente. Adora aprender e trocar ideias.", love: "Precisa de conversa, conexão mental e espontaneidade.", work: "Se destaca em comunicação, criatividade e atividades variadas.", money: "Boas ideias podem trazer oportunidades, mas evite gastos impulsivos." }; } if ((month === 6 && day >= 21) || (month === 7 && day <= 22)) { return { name: "Câncer", symbol: "♋", period: "21 de junho — 22 de julho", element: "Água", planet: "Lua", description: "Sensível, protetor e muito ligado às pessoas que ama.", love: "Valoriza carinho, confiança e vínculos emocionais profundos.", work: "Intuitivo e cuidadoso, especialmente em ambientes que envolvem pessoas.", money: "Prefere segurança e estabilidade. Organização financeira será importante." }; } if ((month === 7 && day >= 23) || (month === 8 && day <= 22)) { return { name: "Leão", symbol: "♌", period: "23 de julho — 22 de agosto", element: "Fogo", planet: "Sol", description: "Confiante, criativo e cheio de personalidade.", love: "Gosta de demonstrar carinho e também de se sentir valorizado.", work: "Tem facilidade para liderança, criatividade e apresentação de ideias.", money: "Pode gostar de aproveitar suas conquistas, mas deve equilibrar prazer e planejamento." }; } if ((month === 8 && day >= 23) || (month === 9 && day <= 22)) { return { name: "Virgem", symbol: "♍", period: "23 de agosto — 22 de setembro", element: "Terra", planet: "Mercúrio", description: "Observador, organizado e cuidadoso com os detalhes.", love: "Demonstra carinho principalmente através de atitudes e cuidado.", work: "Analítico, organizado e excelente para resolver problemas.", money: "Organização é seu ponto forte. Planejar os gastos pode trazer tranquilidade." }; } if ((month === 9 && day >= 23) || (month === 10 && day <= 22)) { return { name: "Libra", symbol: "♎", period: "23 de setembro — 22 de outubro", element: "Ar", planet: "Vênus", description: "Diplomático, sociável e apaixonado por equilíbrio.", love: "Valoriza parceria, diálogo e harmonia.", work: "Tem facilidade para negociação, comunicação e trabalho em equipe.", money: "Procure equilibrar seus desejos com seu planejamento financeiro." }; } if ((month === 10 && day >= 23) || (month === 11 && day <= 21)) { return { name: "Escorpião", symbol: "♏", period: "23 de outubro — 21 de novembro", element: "Água", planet: "Plutão", description: "Intenso, misterioso e extremamente determinado.", love: "Valoriza confiança, intensidade e conexões profundas.", work: "Persistente e estratégico. Não costuma desistir facilmente dos seus objetivos.", money: "É estratégico quando possui um objetivo e costuma pensar antes de agir." }; } if ((month === 11 && day >= 22) || (month === 12 && day <= 21)) { return { name: "Sagitário", symbol: "♐", period: "22 de novembro — 21 de dezembro", element: "Fogo", planet: "Júpiter", description: "Aventureiro, otimista e independente.", love: "Gosta de liberdade, diversão e relações que permitam crescer juntos.", work: "Criativo, otimista e motivado por novos desafios.", money: "Pode encontrar novas oportunidades, mas deve controlar gastos por impulso." }; } if ((month === 12 && day >= 22) || (month === 1 && day <= 19)) { return { name: "Capricórnio", symbol: "♑", period: "22 de dezembro — 19 de janeiro", element: "Terra", planet: "Saturno", description: "Responsável, disciplinado e ambicioso.", love: "Prefere construir relações estáveis e baseadas em confiança.", work: "Focado, organizado e determinado a alcançar seus objetivos.", money: "Tem facilidade para planejamento e busca por estabilidade." }; } if ((month === 1 && day >= 20) || (month === 2 && day <= 18)) { return { name: "Aquário", symbol: "♒", period: "20 de janeiro — 18 de fevereiro", element: "Ar", planet: "Urano", description: "Criativo, independente e original.", love: "Valoriza liberdade, amizade e conexão intelectual.", work: "Inovador e cheio de ideias diferentes.", money: "Novas ideias podem abrir oportunidades, mas mantenha o planejamento." }; } return { name: "Peixes", symbol: "♓", period: "19 de fevereiro — 20 de março", element: "Água", planet: "Netuno", description: "Sensível, intuitivo e imaginativo.", love: "Romântico, carinhoso e muito ligado à conexão emocional.", work: "Criativo e intuitivo, especialmente em atividades que envolvem imaginação.", money: "Sua intuição pode ajudar, mas analise os fatos antes de tomar decisões." }; } // ======================================== // MENSAGEM DO DIA // ======================================== function getMensagemDoDia(signo) { const mensagens = { "Áries": [ "Hoje é um bom dia para tomar iniciativa. Confie na sua capacidade e dê o primeiro passo.", "Uma oportunidade pode surgir quando você menos espera. Observe os sinais e aja com confiança.", "Evite agir por impulso hoje. Pense antes de tomar uma decisão importante." ], "Touro": [ "Tenha paciência. Algumas coisas precisam de tempo para dar os resultados que você espera.", "Hoje é um bom momento para cuidar da sua estabilidade e valorizar aquilo que você já conquistou.", "Uma pequena decisão tomada hoje pode trazer mais segurança para o seu futuro." ], "Gêmeos": [ "Uma conversa pode trazer uma oportunidade inesperada. Esteja aberto para ouvir.", "Sua criatividade está em alta. Aproveite o dia para aprender algo novo.", "Nem toda resposta precisa ser encontrada imediatamente. Às vezes, observar é importante." ], "Câncer": [ "Hoje é um bom dia para ouvir sua intuição, mas sem esquecer de cuidar de você.", "Uma pessoa próxima pode precisar da sua atenção. Um simples gesto pode fazer diferença.", "Não carregue sozinho aquilo que pode ser compartilhado." ], "Leão": [ "Não tenha medo de mostrar seu potencial. Hoje pode ser um ótimo dia para deixar sua criatividade aparecer.", "Uma atitude confiante pode abrir uma porta importante. Acredite mais no seu próprio valor.", "Você não precisa provar nada para ninguém. Deixe seus resultados falarem por você." ], "Virgem": [ "Organize suas prioridades e não tente resolver tudo ao mesmo tempo.", "Um detalhe que você percebe hoje pode fazer toda a diferença.", "Permita-se descansar. Nem tudo precisa estar perfeito." ], "Libra": [ "Uma escolha pode exigir equilíbrio entre razão e emoção. Não tenha pressa para decidir.", "Hoje é um bom dia para resolver pequenos conflitos através de uma conversa tranquila.", "Valorize as relações que trazem paz." ], "Escorpião": [ "Confie na sua percepção, mas não deixe que a desconfiança controle suas decisões.", "Algo que parecia distante pode começar a se aproximar.", "Hoje pode ser um dia de transformação. Deixe para trás aquilo que já não combina com você." ], "Sagitário": [ "Uma nova possibilidade pode despertar sua curiosidade. Explore, mas planeje seus próximos passos.", "Hoje é um bom dia para sair da rotina e buscar novas experiências.", "Mantenha o otimismo, mas lembre-se: grandes sonhos também precisam de pequenas ações." ], "Capricórnio": [ "Continue construindo seu caminho. Seu esforço não está sendo perdido.", "Uma decisão prática pode aproximá-lo de um objetivo importante.", "Hoje é um bom dia para organizar planos, finanças e prioridades." ], "Aquário": [ "Uma ideia diferente pode se transformar em uma oportunidade.", "Hoje você pode enxergar uma situação de uma maneira completamente diferente.", "Nem todo mundo precisa entender seus planos. Algumas ideias precisam de tempo." ], "Peixes": [ "Sua sensibilidade pode ajudá-lo a perceber algo que outras pessoas não estão enxergando.", "Hoje é um bom dia para ouvir sua intuição, mas mantenha os pés no chão.", "Reserve alguns minutos para você. Às vezes, o silêncio ajuda a encontrar respostas." ] }; const lista = mensagens[signo]; // A mensagem muda de acordo com o dia const hoje = new Date(); const numero = hoje.getDate() + hoje.getMonth() + hoje.getFullYear(); const indice = numero % lista.length; return lista[indice]; }
+alert("JavaScript funcionando!");
+
+const discoverBtn = document.getElementById("discoverBtn");
+const birthdateInput = document.getElementById("birthdate");
+const result = document.getElementById("result");
+
+discoverBtn.addEventListener("click", function () {
+
+    const birthdate = birthdateInput.value;
+
+    if (!birthdate) {
+        result.innerHTML = `
+            <p class="error">🌙 Escolha sua data de nascimento.</p>
+        `;
+        return;
+    }
+
+    // Divide a data para evitar problemas de fuso horário
+    const partes = birthdate.split("-");
+
+    const ano = Number(partes[0]);
+    const mes = Number(partes[1]);
+    const dia = Number(partes[2]);
+
+    const sign = getZodiacSign(dia, mes);
+
+    const mensagem = getMensagemDoDia(sign.name);
+
+    result.innerHTML = `
+        <div class="sign-result">
+
+            <div class="sign-symbol">
+                ${sign.symbol}
+            </div>
+
+            <h2>${sign.name}</h2>
+
+            <p class="period">
+                ${sign.period}
+            </p>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <span>🔥</span>
+                    <small>Elemento</small>
+                    <strong>${sign.element}</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>🪐</span>
+                    <small>Planeta</small>
+                    <strong>${sign.planet}</strong>
+                </div>
+
+            </div>
+
+            <div class="description">
+
+                <h3>✨ Personalidade</h3>
+
+                <p>
+                    ${sign.description}
+                </p>
+
+            </div>
+
+            <div class="description">
+
+                <h3>❤️ No amor</h3>
+
+                <p>
+                    ${sign.love}
+                </p>
+
+            </div>
+
+            <div class="description">
+
+                <h3>💼 No trabalho</h3>
+
+                <p>
+                    ${sign.work}
+                </p>
+
+            </div>
+
+            <div class="description">
+
+                <h3>💰 Dinheiro</h3>
+
+                <p>
+                    ${sign.money}
+                </p>
+
+            </div>
+
+            <div class="description daily-message">
+
+                <h3>🔮 Mensagem do dia</h3>
+
+                <p>
+                    ${mensagem}
+                </p>
+
+            </div>
+
+        </div>
+    `;
+});
+
+
+function getZodiacSign(day, month) {
+
+    if ((month === 3 && day >= 21) ||
+        (month === 4 && day <= 19)) {
+
+        return {
+            name: "Áries",
+            symbol: "♈",
+            period: "21 de março — 19 de abril",
+            element: "Fogo",
+            planet: "Marte",
+            description: "Determinado, energético e cheio de iniciativa. Gosta de desafios e costuma agir com coragem.",
+            love: "Intenso e direto. Quando se interessa por alguém, costuma demonstrar seus sentimentos com bastante energia.",
+            work: "Gosta de desafios, liderança e situações que permitam tomar iniciativa.",
+            money: "Tem iniciativa para buscar novas oportunidades, mas deve evitar decisões impulsivas com dinheiro."
+        };
+    }
+
+    if ((month === 4 && day >= 20) ||
+        (month === 5 && day <= 20)) {
+
+        return {
+            name: "Touro",
+            symbol: "♉",
+            period: "20 de abril — 20 de maio",
+            element: "Terra",
+            planet: "Vênus",
+            description: "Paciente, leal e determinado. Valoriza estabilidade e conforto.",
+            love: "Valoriza segurança, confiança e relações construídas com calma.",
+            work: "Persistente e dedicado. Prefere construir resultados sólidos ao longo do tempo.",
+            money: "Valoriza segurança financeira e costuma pensar antes de gastar."
+        };
+    }
+
+    if ((month === 5 && day >= 21) ||
+        (month === 6 && day <= 20)) {
+
+        return {
+            name: "Gêmeos",
+            symbol: "♊",
+            period: "21 de maio — 20 de junho",
+            element: "Ar",
+            planet: "Mercúrio",
+            description: "Curioso, comunicativo e inteligente. Adora aprender e trocar ideias.",
+            love: "Precisa de conversa, conexão mental e espontaneidade.",
+            work: "Se destaca em comunicação, criatividade e atividades variadas.",
+            money: "Boas ideias podem trazer oportunidades, mas evite gastos impulsivos."
+        };
+    }
+
+    if ((month === 6 && day >= 21) ||
+        (month === 7 && day <= 22)) {
+
+        return {
+            name: "Câncer",
+            symbol: "♋",
+            period: "21 de junho — 22 de julho",
+            element: "Água",
+            planet: "Lua",
+            description: "Sensível, protetor e muito ligado às pessoas que ama.",
+            love: "Valoriza carinho, confiança e vínculos emocionais profundos.",
+            work: "Intuitivo e cuidadoso, especialmente em ambientes que envolvem pessoas.",
+            money: "Prefere segurança e estabilidade. Organização financeira será importante."
+        };
+    }
+
+    if ((month === 7 && day >= 23) ||
+        (month === 8 && day <= 22)) {
+
+        return {
+            name: "Leão",
+            symbol: "♌",
+            period: "23 de julho — 22 de agosto",
+            element: "Fogo",
+            planet: "Sol",
+            description: "Confiante, criativo e cheio de personalidade.",
+            love: "Gosta de demonstrar carinho e também de se sentir valorizado.",
+            work: "Tem facilidade para liderança, criatividade e apresentação de ideias.",
+            money: "Pode gostar de aproveitar suas conquistas, mas deve equilibrar prazer e planejamento."
+        };
+    }
+
+    if ((month === 8 && day >= 23) ||
+        (month === 9 && day <= 22)) {
+
+        return {
+            name: "Virgem",
+            symbol: "♍",
+            period: "23 de agosto — 22 de setembro",
+            element: "Terra",
+            planet: "Mercúrio",
+            description: "Observador, organizado e cuidadoso com os detalhes.",
+            love: "Demonstra carinho principalmente através de atitudes e cuidado.",
+            work: "Analítico, organizado e excelente para resolver problemas.",
+            money: "Organização é seu ponto forte. Planejar os gastos pode trazer tranquilidade."
+        };
+    }
+
+    if ((month === 9 && day >= 23) ||
+        (month === 10 && day <= 22)) {
+
+        return {
+            name: "Libra",
+            symbol: "♎",
+            period: "23 de setembro — 22 de outubro",
+            element: "Ar",
+            planet: "Vênus",
+            description: "Diplomático, sociável e apaixonado por equilíbrio.",
+            love: "Valoriza parceria, diálogo e harmonia.",
+            work: "Tem facilidade para negociação, comunicação e trabalho em equipe.",
+            money: "Procure equilibrar seus desejos com seu planejamento financeiro."
+        };
+    }
+
+    if ((month === 10 && day >= 23) ||
+        (month === 11 && day <= 21)) {
+
+        return {
+            name: "Escorpião",
+            symbol: "♏",
+            period: "23 de outubro — 21 de novembro",
+            element: "Água",
+            planet: "Plutão",
+            description: "Intenso, misterioso e extremamente determinado.",
+            love: "Valoriza confiança, intensidade e conexões profundas.",
+            work: "Persistente e estratégico. Não costuma desistir facilmente dos seus objetivos.",
+            money: "É estratégico quando possui um objetivo e costuma pensar antes de agir."
+        };
+    }
+
+    if ((month === 11 && day >= 22) ||
+        (month === 12 && day <= 21)) {
+
+        return {
+            name: "Sagitário",
+            symbol: "♐",
+            period: "22 de novembro — 21 de dezembro",
+            element: "Fogo",
+            planet: "Júpiter",
+            description: "Aventureiro, otimista e independente.",
+            love: "Gosta de liberdade, diversão e relações que permitam crescer juntos.",
+            work: "Criativo, otimista e motivado por novos desafios.",
+            money: "Pode encontrar novas oportunidades, mas deve controlar gastos por impulso."
+        };
+    }
+
+    if ((month === 12 && day >= 22) ||
+        (month === 1 && day <= 19)) {
+
+        return {
+            name: "Capricórnio",
+            symbol: "♑",
+            period: "22 de dezembro — 19 de janeiro",
+            element: "Terra",
+            planet: "Saturno",
+            description: "Responsável, disciplinado e ambicioso.",
+            love: "Prefere construir relações estáveis e baseadas em confiança.",
+            work: "Focado, organizado e determinado a alcançar seus objetivos.",
+            money: "Tem facilidade para planejamento e busca por estabilidade."
+        };
+    }
+
+    if ((month === 1 && day >= 20) ||
+        (month === 2 && day <= 18)) {
+
+        return {
+            name: "Aquário",
+            symbol: "♒",
+            period: "20 de janeiro — 18 de fevereiro",
+            element: "Ar",
+            planet: "Urano",
+            description: "Criativo, independente e original.",
+            love: "Valoriza liberdade, amizade e conexão intelectual.",
+            work: "Inovador e cheio de ideias diferentes.",
+            money: "Novas ideias podem abrir oportunidades, mas mantenha o planejamento."
+        };
+    }
+
+    return {
+        name: "Peixes",
+        symbol: "♓",
+        period: "19 de fevereiro — 20 de março",
+        element: "Água",
+        planet: "Netuno",
+        description: "Sensível, intuitivo e imaginativo.",
+        love: "Romântico, carinhoso e muito ligado à conexão emocional.",
+        work: "Criativo e intuitivo, especialmente em atividades que envolvem imaginação.",
+        money: "Sua intuição pode ajudar, mas analise os fatos antes de tomar decisões."
+    };
+}
+
+
+// ========================================
+// MENSAGEM DO DIA
+// ========================================
+
+function getMensagemDoDia(signo) {
+
+    const mensagens = {
+
+        "Áries": [
+            "Hoje é um bom dia para tomar iniciativa. Confie na sua capacidade e dê o primeiro passo.",
+            "Uma oportunidade pode surgir quando você menos espera. Observe os sinais e aja com confiança.",
+            "Evite agir por impulso hoje. Pense antes de tomar uma decisão importante."
+        ],
+
+        "Touro": [
+            "Tenha paciência. Algumas coisas precisam de tempo para dar os resultados que você espera.",
+            "Hoje é um bom momento para cuidar da sua estabilidade e valorizar aquilo que você já conquistou.",
+            "Uma pequena decisão tomada hoje pode trazer mais segurança para o seu futuro."
+        ],
+
+        "Gêmeos": [
+            "Uma conversa pode trazer uma oportunidade inesperada. Esteja aberto para ouvir.",
+            "Sua criatividade está em alta. Aproveite o dia para aprender algo novo.",
+            "Nem toda resposta precisa ser encontrada imediatamente. Às vezes, observar é importante."
+        ],
+
+        "Câncer": [
+            "Hoje é um bom dia para ouvir sua intuição, mas sem esquecer de cuidar de você.",
+            "Uma pessoa próxima pode precisar da sua atenção. Um simples gesto pode fazer diferença.",
+            "Não carregue sozinho aquilo que pode ser compartilhado."
+        ],
+
+        "Leão": [
+            "Não tenha medo de mostrar seu potencial. Hoje pode ser um ótimo dia para deixar sua criatividade aparecer.",
+            "Uma atitude confiante pode abrir uma porta importante. Acredite mais no seu próprio valor.",
+            "Você não precisa provar nada para ninguém. Deixe seus resultados falarem por você."
+        ],
+
+        "Virgem": [
+            "Organize suas prioridades e não tente resolver tudo ao mesmo tempo.",
+            "Um detalhe que você percebe hoje pode fazer toda a diferença.",
+            "Permita-se descansar. Nem tudo precisa estar perfeito."
+        ],
+
+        "Libra": [
+            "Uma escolha pode exigir equilíbrio entre razão e emoção. Não tenha pressa para decidir.",
+            "Hoje é um bom dia para resolver pequenos conflitos através de uma conversa tranquila.",
+            "Valorize as relações que trazem paz."
+        ],
+
+        "Escorpião": [
+            "Confie na sua percepção, mas não deixe que a desconfiança controle suas decisões.",
+            "Algo que parecia distante pode começar a se aproximar.",
+            "Hoje pode ser um dia de transformação. Deixe para trás aquilo que já não combina com você."
+        ],
+
+        "Sagitário": [
+            "Uma nova possibilidade pode despertar sua curiosidade. Explore, mas planeje seus próximos passos.",
+            "Hoje é um bom dia para sair da rotina e buscar novas experiências.",
+            "Mantenha o otimismo, mas lembre-se: grandes sonhos também precisam de pequenas ações."
+        ],
+
+        "Capricórnio": [
+            "Continue construindo seu caminho. Seu esforço não está sendo perdido.",
+            "Uma decisão prática pode aproximá-lo de um objetivo importante.",
+            "Hoje é um bom dia para organizar planos, finanças e prioridades."
+        ],
+
+        "Aquário": [
+            "Uma ideia diferente pode se transformar em uma oportunidade.",
+            "Hoje você pode enxergar uma situação de uma maneira completamente diferente.",
+            "Nem todo mundo precisa entender seus planos. Algumas ideias precisam de tempo."
+        ],
+
+        "Peixes": [
+            "Sua sensibilidade pode ajudá-lo a perceber algo que outras pessoas não estão enxergando.",
+            "Hoje é um bom dia para ouvir sua intuição, mas mantenha os pés no chão.",
+            "Reserve alguns minutos para você. Às vezes, o silêncio ajuda a encontrar respostas."
+        ]
+    };
+
+    const lista = mensagens[signo];
+
+    // A mensagem muda de acordo com o dia
+    const hoje = new Date();
+
+    const numero =
+        hoje.getDate() +
+        hoje.getMonth() +
+        hoje.getFullYear();
+
+    const indice = numero % lista.length;
+
+    return lista[indice];
+}
