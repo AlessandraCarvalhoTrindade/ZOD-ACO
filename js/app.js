@@ -3,11 +3,12 @@ const birthdateInput = document.getElementById("birthdate");
 const result = document.getElementById("result");
 
 discoverBtn.addEventListener("click", () => {
-
     const birthdate = birthdateInput.value;
 
     if (!birthdate) {
-        result.textContent = "🌙 Escolha sua data de nascimento.";
+        result.innerHTML = `
+            <p class="error">🌙 Escolha sua data de nascimento.</p>
+        `;
         return;
     }
 
@@ -19,9 +20,48 @@ discoverBtn.addEventListener("click", () => {
     const sign = getZodiacSign(day, month);
 
     result.innerHTML = `
-        <strong>${sign.symbol} ${sign.name}</strong>
-        <br>
-        <span>${sign.description}</span>
+        <div class="sign-result">
+
+            <div class="sign-symbol">
+                ${sign.symbol}
+            </div>
+
+            <h2>${sign.name}</h2>
+
+            <p class="period">${sign.period}</p>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+                    <span>🔥</span>
+                    <small>Elemento</small>
+                    <strong>${sign.element}</strong>
+                </div>
+
+                <div class="info-box">
+                    <span>🪐</span>
+                    <small>Planeta</small>
+                    <strong>${sign.planet}</strong>
+                </div>
+
+            </div>
+
+            <div class="description">
+                <h3>✨ Personalidade</h3>
+                <p>${sign.description}</p>
+            </div>
+
+            <div class="description">
+                <h3>❤️ No amor</h3>
+                <p>${sign.love}</p>
+            </div>
+
+            <div class="description">
+                <h3>💼 No trabalho</h3>
+                <p>${sign.work}</p>
+            </div>
+
+        </div>
     `;
 });
 
@@ -32,7 +72,12 @@ function getZodiacSign(day, month) {
         return {
             name: "Áries",
             symbol: "♈",
-            description: "Determinado, energético e cheio de iniciativa."
+            period: "21 de março — 19 de abril",
+            element: "Fogo",
+            planet: "Marte",
+            description: "Determinado, energético e cheio de iniciativa. Gosta de desafios e costuma agir com coragem.",
+            love: "Intenso e direto. Quando se interessa por alguém, costuma demonstrar seus sentimentos com bastante energia.",
+            work: "Gosta de desafios, liderança e situações que permitam tomar iniciativa."
         };
     }
 
@@ -40,7 +85,12 @@ function getZodiacSign(day, month) {
         return {
             name: "Touro",
             symbol: "♉",
-            description: "Paciente, leal e determinado."
+            period: "20 de abril — 20 de maio",
+            element: "Terra",
+            planet: "Vênus",
+            description: "Paciente, leal e determinado. Valoriza estabilidade e conforto.",
+            love: "Valoriza segurança, confiança e relações construídas com calma.",
+            work: "Persistente e dedicado. Prefere construir resultados sólidos ao longo do tempo."
         };
     }
 
@@ -48,7 +98,12 @@ function getZodiacSign(day, month) {
         return {
             name: "Gêmeos",
             symbol: "♊",
-            description: "Curioso, comunicativo e inteligente."
+            period: "21 de maio — 20 de junho",
+            element: "Ar",
+            planet: "Mercúrio",
+            description: "Curioso, comunicativo e inteligente. Adora aprender e trocar ideias.",
+            love: "Precisa de conversa, conexão mental e espontaneidade.",
+            work: "Se destaca em comunicação, criatividade e atividades variadas."
         };
     }
 
@@ -56,7 +111,12 @@ function getZodiacSign(day, month) {
         return {
             name: "Câncer",
             symbol: "♋",
-            description: "Sensível, protetor e muito ligado às pessoas."
+            period: "21 de junho — 22 de julho",
+            element: "Água",
+            planet: "Lua",
+            description: "Sensível, protetor e muito ligado às pessoas que ama.",
+            love: "Valoriza carinho, confiança e vínculos emocionais profundos.",
+            work: "Intuitivo e cuidadoso, especialmente em ambientes que envolvem pessoas."
         };
     }
 
@@ -64,7 +124,12 @@ function getZodiacSign(day, month) {
         return {
             name: "Leão",
             symbol: "♌",
-            description: "Confiante, criativo e cheio de personalidade."
+            period: "23 de julho — 22 de agosto",
+            element: "Fogo",
+            planet: "Sol",
+            description: "Confiante, criativo e cheio de personalidade.",
+            love: "Gosta de demonstrar carinho e também de se sentir valorizado.",
+            work: "Tem facilidade para liderança, criatividade e apresentação de ideias."
         };
     }
 
@@ -72,7 +137,12 @@ function getZodiacSign(day, month) {
         return {
             name: "Virgem",
             symbol: "♍",
-            description: "Observador, organizado e cuidadoso."
+            period: "23 de agosto — 22 de setembro",
+            element: "Terra",
+            planet: "Mercúrio",
+            description: "Observador, organizado e cuidadoso com os detalhes.",
+            love: "Demonstra carinho principalmente através de atitudes e cuidado.",
+            work: "Analítico, organizado e excelente para resolver problemas."
         };
     }
 
@@ -80,7 +150,12 @@ function getZodiacSign(day, month) {
         return {
             name: "Libra",
             symbol: "♎",
-            description: "Diplomático, sociável e apaixonado por equilíbrio."
+            period: "23 de setembro — 22 de outubro",
+            element: "Ar",
+            planet: "Vênus",
+            description: "Diplomático, sociável e apaixonado por equilíbrio.",
+            love: "Valoriza parceria, diálogo e harmonia.",
+            work: "Tem facilidade para negociação, comunicação e trabalho em equipe."
         };
     }
 
@@ -88,7 +163,12 @@ function getZodiacSign(day, month) {
         return {
             name: "Escorpião",
             symbol: "♏",
-            description: "Intenso, misterioso e extremamente determinado."
+            period: "23 de outubro — 21 de novembro",
+            element: "Água",
+            planet: "Plutão",
+            description: "Intenso, misterioso e extremamente determinado.",
+            love: "Valoriza confiança, intensidade e conexões profundas.",
+            work: "Persistente e estratégico. Não costuma desistir facilmente dos seus objetivos."
         };
     }
 
@@ -96,7 +176,12 @@ function getZodiacSign(day, month) {
         return {
             name: "Sagitário",
             symbol: "♐",
-            description: "Aventureiro, otimista e independente."
+            period: "22 de novembro — 21 de dezembro",
+            element: "Fogo",
+            planet: "Júpiter",
+            description: "Aventureiro, otimista e independente.",
+            love: "Gosta de liberdade, diversão e relações que permitam crescer juntos.",
+            work: "Criativo, otimista e motivado por novos desafios."
         };
     }
 
@@ -104,7 +189,12 @@ function getZodiacSign(day, month) {
         return {
             name: "Capricórnio",
             symbol: "♑",
-            description: "Responsável, disciplinado e ambicioso."
+            period: "22 de dezembro — 19 de janeiro",
+            element: "Terra",
+            planet: "Saturno",
+            description: "Responsável, disciplinado e ambicioso.",
+            love: "Prefere construir relações estáveis e baseadas em confiança.",
+            work: "Focado, organizado e determinado a alcançar seus objetivos."
         };
     }
 
@@ -112,13 +202,23 @@ function getZodiacSign(day, month) {
         return {
             name: "Aquário",
             symbol: "♒",
-            description: "Criativo, independente e original."
+            period: "20 de janeiro — 18 de fevereiro",
+            element: "Ar",
+            planet: "Urano",
+            description: "Criativo, independente e original.",
+            love: "Valoriza liberdade, amizade e conexão intelectual.",
+            work: "Inovador e cheio de ideias diferentes."
         };
     }
 
     return {
         name: "Peixes",
         symbol: "♓",
-        description: "Sensível, intuitivo e imaginativo."
+        period: "19 de fevereiro — 20 de março",
+        element: "Água",
+        planet: "Netuno",
+        description: "Sensível, intuitivo e imaginativo.",
+        love: "Romântico, carinhoso e muito ligado à conexão emocional.",
+        work: "Criativo e intuitivo, especialmente em atividades que envolvem imaginação."
     };
 }
